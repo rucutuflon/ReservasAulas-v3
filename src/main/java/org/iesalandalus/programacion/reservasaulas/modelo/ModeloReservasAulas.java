@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.modelo;
 
 
 import java.util.List;
-
+import java.io.IOException;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.modelo.dao.Aulas;
@@ -52,6 +52,14 @@ public class ModeloReservasAulas implements IModeloReservasAulas {
 		this.aulas.borrar(aula);
 	}
 	
+	public void leerAulas() throws IOException, ClassNotFoundException {
+		this.aulas.leer();
+	}
+	
+	public void escribirAulas() throws IOException {
+		this.aulas.escribir();
+	}
+	
 	public int getNumProfesores() {
 		return this.profesores.getNumProfesores();
 	}
@@ -74,6 +82,14 @@ public class ModeloReservasAulas implements IModeloReservasAulas {
 	
 	public void borrarProfesor(Profesor profesor) throws OperationNotSupportedException {
 		this.profesores.borrar(profesor);
+	}
+	
+	public void leerProfesores() throws IOException, ClassNotFoundException {
+		this.profesores.leer();
+	}
+	
+	public void escribirProfesores() throws IOException {
+		this.profesores.escribir();
 	}
 	
 	public int getNumReservas() {
@@ -114,5 +130,13 @@ public class ModeloReservasAulas implements IModeloReservasAulas {
 	
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
 		return this.reservas.consultarDisponibilidad(aula, permanencia);
+	}
+	
+	public void leerReservas() throws IOException, ClassNotFoundException {
+		this.reservas.leer();
+	}
+	
+	public void escribirReservas() throws IOException {
+		this.reservas.escribir();
 	}
 }

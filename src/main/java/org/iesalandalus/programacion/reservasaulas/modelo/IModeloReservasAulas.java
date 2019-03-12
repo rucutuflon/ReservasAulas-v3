@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.reservasaulas.modelo;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
@@ -23,6 +24,10 @@ public interface IModeloReservasAulas {
 	
 	public void borrarAula(Aula aula) throws OperationNotSupportedException;
 	
+	public void leerAulas() throws IOException, ClassNotFoundException;
+	
+	public void escribirAulas() throws IOException;
+	
 	public int getNumProfesores();
 
 	public List<Profesor> getProfesores();
@@ -34,6 +39,10 @@ public interface IModeloReservasAulas {
 	public void insertarProfesor(Profesor profesor) throws OperationNotSupportedException;
 	
 	public void borrarProfesor(Profesor profesor) throws OperationNotSupportedException;
+	
+	public void leerProfesores() throws IOException, ClassNotFoundException;
+	
+	public void escribirProfesores() throws IOException;
 	
 	public int getNumReservas();
 
@@ -54,5 +63,9 @@ public interface IModeloReservasAulas {
 	public List<Reserva> getReservasPermanencia(Permanencia permanencia);
 	
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia);
+	
+	public void leerReservas() throws IOException, ClassNotFoundException;
+	
+	public void escribirReservas() throws IOException;
 
 }
