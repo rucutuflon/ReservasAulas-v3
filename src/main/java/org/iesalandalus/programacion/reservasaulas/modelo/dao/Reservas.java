@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dao;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.permanencia.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.permanencia.PermanenciaPorTramo;
 
-public class Reservas {
+public class Reservas implements Serializable {
 
 	private static final int MAX_PUNTOS_PROFESOR_MES = 200;
 	private List<Reserva> coleccionReservas;
@@ -56,18 +57,18 @@ public class Reservas {
 			throw new OperationNotSupportedException("La reserva ya existe.");
 		}
 		if(!esMesSiguienteOPosterior(reserva)) {
-			throw new OperationNotSupportedException("Sólo se pueden hacer reservas para el mes que viene o posteriores.");
+			throw new OperationNotSupportedException("Sï¿½lo se pueden hacer reservas para el mes que viene o posteriores.");
 		}
 		Reserva aux = getReservaDia(reserva.getPermanencia().getDia());
 		if(aux != null && aux.getAula().equals(reserva.getAula())) {
 			if(aux.getPermanencia() instanceof PermanenciaPorTramo && reserva.getPermanencia() instanceof PermanenciaPorTramo) {
 				if(((PermanenciaPorTramo)aux.getPermanencia()).getTramo().equals(((PermanenciaPorTramo)reserva.getPermanencia()).getTramo())) {
-					throw new OperationNotSupportedException("Ya se ha realizado una reserva por tramo para este día y aula.");
+					throw new OperationNotSupportedException("Ya se ha realizado una reserva por tramo para este dï¿½a y aula.");
 				}
 			}else if(aux.getPermanencia() instanceof PermanenciaPorTramo) {
-				throw new OperationNotSupportedException("Ya se ha realizado una reserva por tramo para este día y aula.");
+				throw new OperationNotSupportedException("Ya se ha realizado una reserva por tramo para este dï¿½a y aula.");
 			}else {
-				throw new OperationNotSupportedException("Ya se ha realizado una reserva por hora para este día y aula.");
+				throw new OperationNotSupportedException("Ya se ha realizado una reserva por hora para este dï¿½a y aula.");
 			}
 		}
 		List<Reserva> aux2 = getReservasProfesorMes(reserva.getProfesor(), reserva.getPermanencia().getDia());
@@ -76,7 +77,7 @@ public class Reservas {
 			suma += getPuntosGastadosReserva(r);
 		}
 		if(suma + reserva.getPuntos() > MAX_PUNTOS_PROFESOR_MES) {
-			throw new OperationNotSupportedException("Esta reserva excede los puntos máximos por mes para dicho profesor.");
+			throw new OperationNotSupportedException("Esta reserva excede los puntos mï¿½ximos por mes para dicho profesor.");
 		}
 		this.coleccionReservas.add(new Reserva(reserva));
 	}

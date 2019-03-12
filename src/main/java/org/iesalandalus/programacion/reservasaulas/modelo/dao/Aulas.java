@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Aula;
 
-public class Aulas {
+public class Aulas implements Serializable {
 
 	private List<Aula> coleccionAulas;
 	

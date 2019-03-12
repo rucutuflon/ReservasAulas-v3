@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dominio;
 
-public class Aula {
+import java.io.Serializable;
+
+public class Aula implements Serializable {
 	
 	private static final float PUNTOS_POR_PUESTO = 0.5f;
 	private static final int MIN_PUESTOS = 10;
@@ -35,7 +37,7 @@ public class Aula {
 			throw new IllegalArgumentException("El nombre del aula no puede ser nulo.");
 		}
 		if(nombre.isEmpty()) {
-			throw new IllegalArgumentException("El nombre del aula no puede estar vacío.");
+			throw new IllegalArgumentException("El nombre del aula no puede estar vacï¿½o.");
 		}
 		this.nombre = nombre;
 	}
@@ -47,7 +49,7 @@ public class Aula {
 
 	private void setPuestos(int puestos) {
 		if(puestos < MIN_PUESTOS || puestos > MAX_PUESTOS) {
-			throw new IllegalArgumentException("El número de puestos no es correcto.");
+			throw new IllegalArgumentException("El nï¿½mero de puestos no es correcto.");
 		}
 		this.puestos = puestos;
 	}

@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dominio;
 
-public class Profesor {
+import java.io.Serializable;
+
+public class Profesor implements Serializable {
 	
 	private static final String ER_TELEFONO="([69]{1}[0-9]{8})";
 	private static final String ER_CORREO="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
@@ -37,7 +39,7 @@ public class Profesor {
 			throw new IllegalArgumentException("El nombre del profesor no puede ser nulo.");
 		}
 		if(nombre.isEmpty()) {
-			throw new IllegalArgumentException("El nombre del profesor no puede estar vacío.");
+			throw new IllegalArgumentException("El nombre del profesor no puede estar vacï¿½o.");
 		}
 		this.nombre = nombre;
 	}
@@ -51,7 +53,7 @@ public class Profesor {
 			throw new IllegalArgumentException("El correo del profesor no puede ser nulo.");
 		}
 		if(correo.isEmpty()) {
-			throw new IllegalArgumentException("El correo del profesor no es válido.");
+			throw new IllegalArgumentException("El correo del profesor no es vï¿½lido.");
 		}
 		this.correo = correo;
 	}
@@ -62,7 +64,7 @@ public class Profesor {
 
 	public void setTelefono(String telefono) {
 		if(telefono != null && telefono.isEmpty()) {
-			throw new IllegalArgumentException("El teléfono del profesor no es válido.");
+			throw new IllegalArgumentException("El telï¿½fono del profesor no es vï¿½lido.");
 		}
 		this.telefono = telefono;
 	}
