@@ -1,5 +1,11 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +22,7 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.permanencia.Pe
 public class Reservas implements Serializable {
 
 	private static final int MAX_PUNTOS_PROFESOR_MES = 200;
+	private static final String NOMBRE_FICHERO_RESERVAS = "reservas.dat";
 	private List<Reserva> coleccionReservas;
 	
 	public Reservas() {
@@ -184,5 +191,17 @@ public class Reservas implements Serializable {
 		}
 		return true;
 		
+	}
+	
+	public void leer() throws IOException, ClassNotFoundException {
+		ObjectInputStream ois = new ObjectInputStream (new FileInputStream (new File (NOMBRE_FICHERO_RESERVAS)));
+		coleccionReservas = (List<Reserva>) ois.readObject();
+		ois.close();
+	}
+	
+	public void escribir() throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream (new File (NOMBRE_FICHERO_RESERVAS)));
+		oos.writeObject(coleccionReservas);
+		oos.close();
 	}
 }
