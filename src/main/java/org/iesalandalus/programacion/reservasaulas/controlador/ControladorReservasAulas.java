@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.reservasaulas.controlador;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
@@ -26,13 +27,41 @@ public class ControladorReservasAulas implements IControladorReservasAulas {
 	@Override
 	public void comenzar() {
 		vista.setControlador(this);
+		try {
+			modelo.leerAulas();
+		}
+		catch (IOException e1) {}
+		catch (ClassNotFoundException e2) {	}
+		try {
+			modelo.leerProfesores();
+		}
+		catch (IOException e1) {}
+		catch (ClassNotFoundException e2) {	}
+		try {
+			modelo.leerReservas();
+		}
+		catch (IOException e1) {}
+		catch (ClassNotFoundException e2) {	}
 		
 	}
 
 	@Override
 	public void salir() {
-		// TODO Auto-generated method stub
-		
+		try {
+			modelo.escribirAulas();
+		}
+		catch (IOException e) {
+		}
+		try {
+			modelo.escribirProfesores();
+		}
+		catch (IOException e) {
+		}
+		try {
+			modelo.escribirReservas();
+		}
+		catch (IOException e) {
+		}
 	}
 
 	@Override
