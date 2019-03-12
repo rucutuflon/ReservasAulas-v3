@@ -1,5 +1,11 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +13,11 @@ import java.util.List;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Profesor;
+import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Reserva;
 
 public class Profesores implements Serializable {
 
+	private static final String NOMBRE_FICHERO_PROFESORES ="profesores.dat";
 	private List<Profesor> coleccionProfesores;
 	
 	public Profesores() {
@@ -79,5 +87,17 @@ public class Profesores implements Serializable {
 			aux.add(coleccionProfesores.get(i).toString());
 		}
 		return aux;
+	}
+	
+	public void leer() throws IOException, ClassNotFoundException {
+		ObjectInputStream ois = new ObjectInputStream (new FileInputStream (new File (NOMBRE_FICHERO_PROFESORES)));
+		coleccionProfesores = (List<Profesor>) ois.readObject();
+		ois.close();
+	}
+	
+	public void escribir() throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream (new File (NOMBRE_FICHERO_PROFESORES)));
+		oos.writeObject(coleccionProfesores);
+		oos.close();
 	}
 }

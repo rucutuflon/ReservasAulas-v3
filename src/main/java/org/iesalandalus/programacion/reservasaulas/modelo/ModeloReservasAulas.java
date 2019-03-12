@@ -1,6 +1,6 @@
 package org.iesalandalus.programacion.reservasaulas.modelo;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
@@ -13,7 +13,7 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.permanencia.Permanencia;
 
-public class ModeloReservasAulas implements IModeloReservasAulas, Serializable {
+public class ModeloReservasAulas implements IModeloReservasAulas {
 
 	private Profesores profesores;
 	private Aulas aulas;
